@@ -6,6 +6,12 @@ import java.util.*;
 import utils.*;
 
 
+/**
+ * Description <h1>Socket Server Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see serverThread
+ */
 
 public final class Server extends Object {
 

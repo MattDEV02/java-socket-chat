@@ -1,8 +1,17 @@
 package utils;
 
+import main.Client;
+
 import java.net.*;
 import java.util.*;
 
+
+/**
+ * Description <h1>Global utils Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see index
+ */
 
 public class index extends Object {
 

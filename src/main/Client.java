@@ -5,6 +5,12 @@ import java.net.*;
 import java.util.Scanner;
 import utils.*;
 
+/**
+ * Description <h1>Socket Client Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see clientThread
+ */
 
 public final class Client extends Object {
 

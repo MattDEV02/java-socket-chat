@@ -4,8 +4,13 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 import main.Server;
-import utils.index;
 
+/**
+ * Description <h1>Thread structure of Server Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see Server
+ */
 
 public final class serverThread extends Thread {
 

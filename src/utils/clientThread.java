@@ -3,8 +3,15 @@ package utils;
 import java.io.*;
 import java.util.Scanner;
 import java.net.Socket;
-import utils.index;
+import main.Client;
 
+
+/**
+ * Description <h1>Thread structure of Client Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see Client
+ */
 
 public final class clientThread extends Thread {
 
