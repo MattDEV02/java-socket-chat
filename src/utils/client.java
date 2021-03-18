@@ -1,9 +1,8 @@
-package main;
+package utils;
 
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
-import utils.*;
 
 /**
  * Description <h1>Socket Client Class </h1>
@@ -12,14 +11,14 @@ import utils.*;
  * @see clientThread
  */
 
-public final class Client extends Object {
+public final class client extends Object {
 
     private Socket clientSocket = null;
     private Scanner keyboardInput = null;
     private PrintStream clientOutput = null;
     private String username = "";
 
-    public Client(final InetAddress HOST, final int PORT, final String username) {
+    public client(final InetAddress HOST, final int PORT, final String username) {
         super();
         final String HOSTAddress = HOST.getHostAddress();
         final boolean cond = utils.index.isValidSocket(HOSTAddress, PORT);
@@ -41,7 +40,7 @@ public final class Client extends Object {
         }
     }
 
-    public Client(final Client c) {
+    public client(final client c) {
         if(c != null)  {
             this.setClientSocket(c.clientSocket);
             this.setUsername(c.username);

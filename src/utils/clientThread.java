@@ -3,26 +3,29 @@ package utils;
 import java.io.*;
 import java.util.Scanner;
 import java.net.Socket;
-import main.Client;
+import main.*;
 
 
 /**
  * Description <h1>Thread structure of Client Class </h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
- * @see Client
+ * @see client
  */
 
 public final class clientThread extends Thread {
 
+    private Chat chat = null;
     private Socket client = null;
 
-    public clientThread(final Socket client) {
+    public clientThread(final Chat chat, final Socket client) {
         final String client_HOST = client.getInetAddress().getHostAddress();
         final int client_PORT= client.getPort();
-        final boolean cond = utils.index.isValidSocket(client_HOST, client_PORT);
-        if(cond)
+        final boolean cond = ((chat != null) && (utils.index.isValidSocket(client_HOST, client_PORT)));
+        if(cond) {
+            this.chat = chat;
             this.client = client;
+        }
         else {
             System.err.println("Check inserted HOST.");
             utils.index.handlePORT_ERR();
@@ -30,9 +33,10 @@ public final class clientThread extends Thread {
     }
 
     public clientThread(final clientThread c) {
-        if(c != null)
+        if(c != null) {
+            //this.setChat(c.chat);
             this.setClient(c.client);
-        else {
+        } else {
             final String className = this.getClass().toString();
             utils.index.handleCopy_Construct_ERR(className);
         }
@@ -45,7 +49,7 @@ public final class clientThread extends Thread {
             final Scanner clientInput = new Scanner(clientInputStream);
             do {
                 final String msg = clientInput.nextLine();
-                System.out.println(msg);
+                this.chat.output_messages(msg);
             } while (clientInput.hasNextLine());
             clientInput.close();
         } catch (final IOException e) {

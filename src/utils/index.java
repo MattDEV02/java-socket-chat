@@ -1,7 +1,5 @@
 package utils;
 
-import main.Client;
-
 import java.net.*;
 import java.util.*;
 
@@ -79,7 +77,7 @@ public class index extends Object {
     }
 
     public final static String formatMessage(final String msg) {  // Chat
-        final String space = strRepeat(" ", 7);
+        final String space = strRepeat(" ", 4);
         final String sep = "\n \n";
         final String s = (space + capitalize(msg) + sep);
         return s;
