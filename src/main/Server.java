@@ -3,6 +3,8 @@ package main;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+
+import org.jetbrains.annotations.NotNull;
 import utils.*;
 
 
@@ -43,11 +45,11 @@ public final class Server extends Object {
    }
 
    public final String toString() {
-      String client = "";
+      StringBuilder client = new StringBuilder("");
       for(Socket c : this.clients)
-         client += c.toString();
+         client.append(c.toString());
       final String server = utils.index.serverProcess(this.serverSocket);
-      final String s = String.format("Server: %s \nClients: %s", server, client);
+      final String s = String.format("Server: %s \nClients: %s", server, client.toString());
       return s;
    }
 
@@ -70,8 +72,8 @@ public final class Server extends Object {
       }
    }
 
-   public final void sendMsg(final Socket client, final String msg) throws IOException {
-      final OutputStream clientOutputStream = client.getOutputStream();
+   public final void send(@NotNull final Socket clientSocket, final String msg) throws IOException {
+      final OutputStream clientOutputStream = clientSocket.getOutputStream();
       final PrintStream serverOutput = new PrintStream(clientOutputStream);
       serverOutput.println(msg);
    }
@@ -79,7 +81,7 @@ public final class Server extends Object {
    public final void broadcastMessages(final String msg) {
       try {
          for (final Socket client : this.clients)
-            this.sendMsg(client, msg);
+            this.send(client, msg);
       } catch (IOException e) {
          utils.index.handleException(e);
       }

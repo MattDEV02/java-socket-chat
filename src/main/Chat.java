@@ -11,7 +11,7 @@ import utils.*;
  * Description <h1> Simple Chat GUI</h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
- * @see Client
+ * @see client
  */
 
 public final class Chat extends JFrame {
