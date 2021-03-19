@@ -20,7 +20,7 @@
        </Server>
    </main>
     <main>
-        <Chat client="client">
+        <Chat client="client" username="String">
             <utils>
                 <client
                         host="InetAddress"
