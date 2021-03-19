@@ -1,5 +1,8 @@
 package utils;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 
@@ -157,6 +160,19 @@ public class index extends Object {
         final String s = String.format("Client %s:  | %s |  ;  Actual Clients: %d", strState, clientProcess, numClients);
         System.out.println(s);
     }
+
+   public final static void playSound() {
+      try {
+         final File audioFile = new File("public/submit.wav");
+         final AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+         final Clip audioClip = AudioSystem.getClip();
+         audioClip.open(audioStream);
+         audioClip.start();
+      }
+      catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+         handleException(e);
+      }
+   }
 
     public final static void handleConstruct_ERR(final String class_name) {
         System.err.println("Operazione di Costruzione dell'Oggetto della Classe | " + class_name + " | Fallita.");

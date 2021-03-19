@@ -42,6 +42,7 @@ public final class clientThread extends Object implements Runnable {
         do {
             final String msg = this.clientInput.nextLine();
             this.chat.output_messages(msg);
+            index.playSound();
         } while (clientInput.hasNextLine());
         this.clientInput.close();
     }

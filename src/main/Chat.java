@@ -2,8 +2,11 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.net.Socket;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.swing.*;
+import javax.sound.sampled.*;
 import utils.*;
 
 /**
@@ -79,7 +82,9 @@ public final class Chat extends JFrame {
         this.title.setBackground(new Color(0x404040));
         this.title.setOpaque(true);
         cp.add(this.title);
-        // end components
+        ImageIcon icon = new ImageIcon("public/logo.png");
+        this.setIconImage(icon.getImage());
+       // end components
         this.client = client;
         this.handleClient();
     } // end of public Chat
