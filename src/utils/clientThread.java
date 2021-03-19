@@ -1,8 +1,6 @@
 package utils;
 
-import java.io.*;
 import java.util.Scanner;
-import java.net.Socket;
 import main.*;
 
 
@@ -14,7 +12,7 @@ import main.*;
  * @since 1.0
  */
 
-public final class clientThread implements Runnable {
+public final class clientThread extends Object implements Runnable {
 
     private Chat chat = null;
     private Scanner clientInput = null;
@@ -51,7 +49,7 @@ public final class clientThread implements Runnable {
     @Override
     public final String toString() {
         final String clientInputStr =  this.clientInput.toString();
-        final String s = String.format("Client: %s \nUsername: %s", clientInputStr);
+        final String s = String.format("ClientInput: %s", clientInputStr);
         return s;
     }
 

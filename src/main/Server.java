@@ -25,7 +25,7 @@ public final class Server extends Object {
     * <h2>Server Constructor</h2>
     * @param port the port that server will listen.
     * @return new instance of Server class.
-    * @throws IOException
+    * @throws IOException InputOuput Exception
     */
 
    public Server(final int port) {
@@ -63,7 +63,7 @@ public final class Server extends Object {
       return s;
    }
 
-   public final Vector<Socket> getClients() { return this.clientSockets; }
+   public final Vector<Socket> getClientSockets() { return this.clientSockets; }
 
    public final ServerSocket getServerSocket() { return this.serverSocket; }
 
@@ -99,8 +99,9 @@ public final class Server extends Object {
 
    public final String addClient(final Socket clientSocket) {
       this.clientSockets.add(clientSocket);
+      final int numClients = this.clientSockets.size();
       index.serverLog(this.clientSockets, true);
-      final String msg = index.serverMessage(this.clientSockets, true);
+      final String msg = index.serverMessage(clientSocket, numClients, true);
       return msg;
    }
 
@@ -112,7 +113,7 @@ public final class Server extends Object {
             this.clientSockets.remove(clientSocket);
             final int numClients = this.clientSockets.size();
             index.serverLog(clientSocket, numClients, false);
-            msg = index.serverMessage(this.clientSockets, false);
+            msg = index.serverMessage(clientSocket, numClients, false);
          } else
             System.out.println("Client still connected...");
       } catch(final IOException e) {

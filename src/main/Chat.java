@@ -29,7 +29,7 @@ public final class Chat extends JFrame {
      * <h2>Chat Constructor</h2>
      * @param client the client that will comunicate with the Server
      * @return new instance of Chat class.
-     * @throws null
+     * @throws null null
      */
 
     public Chat(final client client) {
@@ -52,11 +52,7 @@ public final class Chat extends JFrame {
         // start components
         this.submit.setBounds(886, 485, 70, 36); // x, y, w, h
         this.submit.setMargin(new Insets(2, 2, 2, 2));
-        this.submit.addActionListener(new ActionListener() {
-            public final void actionPerformed(final ActionEvent evt) {
-                submit_ActionPerformed(evt);
-            }
-        });
+        this.submit.addActionListener(evt -> submit_ActionPerformed(evt)); // lambda
         this.submit.setBackground(Color.CYAN);
         this.submit.setBorder(new javax.swing.border.LineBorder(Color.GREEN, 2, true));
         this.submit.setToolTipText("Send Message");
@@ -66,11 +62,7 @@ public final class Chat extends JFrame {
         this.input_message.setBounds(239, 485, 655, 36);
         this.input_message.setToolTipText("Enter Message");
         this.input_message.setFont(new Font("Dialog", Font.BOLD, 16));
-        this.input_message.addActionListener(new ActionListener() {
-            public final void actionPerformed(final ActionEvent evt) {
-                submit_ActionPerformed(evt);
-            }
-        });
+        this.input_message.addActionListener(evt -> submit_ActionPerformed(evt));
         cp.add(this.input_message);
         this.area_messagesScrollPane.setBounds(237, 105, 720, 332);
         this.area_messages.setEditable(false);
@@ -95,7 +87,6 @@ public final class Chat extends JFrame {
     // start methods
 
     public final void handleClient() {
-        final Socket clientSocket = this.client.getClientSocket();
         final String username = this.client.getUsername();
         this.title.setText(this.title.getText() + username + " ");
         final clientThread clientThread = new clientThread(this, client.getClientInput());

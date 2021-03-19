@@ -10,6 +10,7 @@ import main.Server;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see Server
+ * @since 1.0
  */
 
 public final class serverThread extends Thread {
@@ -64,7 +65,6 @@ public final class serverThread extends Thread {
             final Scanner serverInput = new Scanner(clientInputStream);
             String msg = "";
             do {
-                final String clientProcess = index.clientProcess(this.clientSocket, false);
                 msg = serverInput.nextLine();
                 msg = msg.equals(index.strLeave) ?
                         server.removeClient(this.clientSocket) : msg.equals(index.strJoin) ?

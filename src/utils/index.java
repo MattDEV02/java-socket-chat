@@ -63,10 +63,10 @@ public class index extends Object {
 
     public final static String strRepeat(final String s, final int n) {   // Chat
         int i = 0;
-        String result = "";
+        StringBuilder result = new StringBuilder("");
         for (; (i < n) ; i++)
-            result += s;  // StringBuilder
-        return result;
+            result.append(s);
+        return result.toString();
     }
 
     public final static String capitalize(final String s) {
@@ -127,10 +127,8 @@ public class index extends Object {
         return str_clientProcess;
     }
 
-    public final static String serverMessage(final Vector<Socket> clients, final boolean state) {
+    public final static String serverMessage(final Socket clientSocket, final int numClients, final boolean state) {
         final String strState = state ? "joined" : "leaved";
-        final int numClients = clients.size();
-        final Socket clientSocket = clients.lastElement();
         final String clientProcess = clientProcess(clientSocket, false);
         final String now = getDate();
         final String base = "Client | %s | has %s the Chat ; Actual Clients: %d %s";
