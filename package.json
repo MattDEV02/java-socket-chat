@@ -1,0 +1,28 @@
+{
+  "name": "java-chat",
+  "version": "0.1.0",
+  "author": {
+    "name": "Matteo Lambertucci",
+    "email": "matteolambertucci3@gmail.com"
+  },
+  "private": false,
+  "main": "./src/main",
+  "license": "none",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MattDEV02/java-socket-chat"
+  },
+  "bugs": {
+    "url": "https://github.com/MattDEV02/java-socket-chat/issues"
+  },
+  "keywords": [
+    "Java",
+    "TCP",
+    "Socket",
+    "MultiThreading"
+  ],
+  "dependencies": {
+  },
+  "scripts": {
+  }
+}

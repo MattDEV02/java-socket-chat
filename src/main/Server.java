@@ -8,7 +8,8 @@ import utils.*;
 
 
 /**
- * Description <h1>Socket Server Class </h1>
+ * <b>Description</b>
+ * <h1>Socket Server Class </h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see serverThread
@@ -19,6 +20,13 @@ public final class Server extends Object {
 
    private Vector<Socket> clientSockets = null;
    private ServerSocket serverSocket = null;
+
+   /**
+    * <h2>Server Constructor</h2>
+    * @param port the port that server will listen.
+    * @return new instance of Server class.
+    * @throws IOException
+    */
 
    public Server(final int port) {
       if(index.isValidSocketPORT(port)) {

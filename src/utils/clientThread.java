@@ -14,7 +14,7 @@ import main.*;
  * @since 1.0
  */
 
-public final class clientThread extends Thread {
+public final class clientThread implements Runnable {
 
     private Chat chat = null;
     private Scanner clientInput = null;

@@ -14,11 +14,13 @@ import java.util.Scanner;
 
 public final class client extends Object {
 
+  // start attributes
     private Socket clientSocket = null;
     private PrintStream clientOutput = null;
     private Scanner clientInput = null;
     private Scanner keyboardInput = null;
     private String username = "";
+  // end attributes
 
     public client(final InetAddress HOST, final int PORT, final String username) {
         super();
@@ -55,6 +57,7 @@ public final class client extends Object {
             index.handleCopy_Construct_ERR(className);
         }
     }
+  // start methods
 
     @Override
     public final String toString() {
@@ -149,4 +152,5 @@ public final class client extends Object {
             index.handleException(e);
         }
     }
+  // end methods
 }

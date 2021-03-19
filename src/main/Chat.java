@@ -7,8 +7,8 @@ import javax.swing.*;
 import utils.*;
 
 /**
- *
- * Description <h1> Simple Chat GUI</h1>
+ * <b>Description</b>
+ * <h1> Simple Chat GUI</h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see client
@@ -24,6 +24,13 @@ public final class Chat extends JFrame {
     private final JLabel title = new JLabel("Your username: ");
     private client client = null;
     // end attributes
+
+    /**
+     * <h2>Chat Constructor</h2>
+     * @param client the client that will comunicate with the Server
+     * @return new instance of Chat class.
+     * @throws null
+     */
 
     public Chat(final client client) {
         // Frame-Init
@@ -91,7 +98,9 @@ public final class Chat extends JFrame {
         final Socket clientSocket = this.client.getClientSocket();
         final String username = this.client.getUsername();
         this.title.setText(this.title.getText() + username + " ");
-        new clientThread(this, client.getClientInput()).start(); // start new Thread
+        final clientThread clientThread = new clientThread(this, client.getClientInput());
+        new Thread(clientThread).start(); // start new Thread
+        this.input_message.requestFocus();
     }
 
     public final void output_messages(final String msg) {
@@ -106,9 +115,9 @@ public final class Chat extends JFrame {
         if(msg.length() > 0) {
             this.input_message.setText("");
             this.client.send(msg);
-        } else {
+        } else
             System.out.println("Inserire caratteri prima di inviare.");
-        }
+        this.input_message.requestFocus();
     }
 
     public final void submit_ActionPerformed(final ActionEvent evt) {

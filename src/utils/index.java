@@ -170,11 +170,4 @@ public class index extends Object {
         System.exit(1);
     }
 
-    public final String readUsername(final String msg) {
-        final int end = msg.indexOf(":");
-        final String username = msg.substring(0, end);
-        System.out.println(username);
-        return "";
-    }
-
 }
