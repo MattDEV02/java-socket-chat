@@ -9,6 +9,7 @@ import java.util.Scanner;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see clientThread
+ * @since 1.0
  */
 
 public final class client extends Object {
@@ -25,7 +26,7 @@ public final class client extends Object {
         if(cond) {
             try {
                 this.clientSocket = new Socket(HOST, PORT);
-                this.username = username;
+                this.username = index.capitalize(username);
                 this.initClientOutput();
                 this.keyboardInput = new Scanner(System.in);
                 this.joinChat();

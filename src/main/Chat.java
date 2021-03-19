@@ -12,6 +12,7 @@ import utils.*;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see client
+ * @since 1.0
  */
 
 public final class Chat extends JFrame {
@@ -73,7 +74,7 @@ public final class Chat extends JFrame {
         this.area_messages.setFont(new Font("Verdana", Font.BOLD, 15));
         this.area_messages.setForeground(Color.GREEN);
         cp.add(this.area_messagesScrollPane);
-        this.title.setBounds(520, 30, 147, 36) ;
+        this.title.setBounds(425, 30, 337, 36) ;
         this.title.setHorizontalAlignment(SwingConstants.CENTER);
         this.title.setFont(new Font("Arial Rounded MT Bold", Font.ITALIC, 25));
         this.title.setForeground(new Color(0xFFC800));
@@ -83,6 +84,9 @@ public final class Chat extends JFrame {
         // end components
         this.client = client;
         final Socket clientSocket = this.client.getClientSocket();
+        final String username = this.client.getUsername();
+        final String clientProcess = index.clientProcess(clientSocket, true);
+        this.title.setText(username + " > " + clientProcess);
         new clientThread(this, clientSocket).start(); // start new Thread
     } // end of public Chat
 

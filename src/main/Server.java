@@ -3,7 +3,6 @@ package main;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
 import org.jetbrains.annotations.NotNull;
 import utils.*;
 
@@ -13,6 +12,7 @@ import utils.*;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see serverThread
+ * @since 1.0
  */
 
 public final class Server extends Object {
@@ -20,18 +20,18 @@ public final class Server extends Object {
    private Vector<Socket> clients = null;
    private ServerSocket serverSocket = null;
 
-   public Server(int port) {
-      if(utils.index.isValidSocketPORT(port)) {
+   public Server(final int port) {
+      if(index.isValidSocketPORT(port)) {
          try {
             this.serverSocket = new ServerSocket(port);
             this.clients = new Vector<Socket>();
-            final String serverProcess = utils.index.serverProcess(this.serverSocket);
+            final String serverProcess = index.serverProcess(this.serverSocket);
             System.out.println("Server running on:  | " + serverProcess + " |");
          } catch(final IOException e) {
-            utils.index.handleException(e);
+            index.handleException(e);
          }
       } else
-         utils.index.handlePORT_ERR();
+         index.handlePORT_ERR();
    }
 
    public Server(Server s) {
@@ -40,7 +40,7 @@ public final class Server extends Object {
          this.setServerSocket(s.serverSocket);
       } else {
          final String className = this.getClass().toString();
-         utils.index.handleCopy_Construct_ERR(className);
+         index.handleCopy_Construct_ERR(className);
       }
    }
 
@@ -48,7 +48,7 @@ public final class Server extends Object {
       StringBuilder client = new StringBuilder("");
       for(Socket c : this.clients)
          client.append(c.toString());
-      final String server = utils.index.serverProcess(this.serverSocket);
+      final String server = index.serverProcess(this.serverSocket);
       final String s = String.format("Server: %s \nClients: %s", server, client.toString());
       return s;
    }
@@ -68,7 +68,7 @@ public final class Server extends Object {
             new serverThread(this, client).start(); // start new Thread
          }
       } catch (final IOException e) {
-         utils.index.handleException(e);
+         index.handleException(e);
       }
    }
 
@@ -83,14 +83,14 @@ public final class Server extends Object {
          for (final Socket client : this.clients)
             this.send(client, msg);
       } catch (IOException e) {
-         utils.index.handleException(e);
+         index.handleException(e);
       }
    }
 
    public final String addClient(final Socket client) {
       this.clients.add(client);
-      utils.index.serverLog(this.clients, true);
-      final String msg = utils.index.serverMessage(this.clients, true);
+      index.serverLog(this.clients, true);
+      final String msg = index.serverMessage(this.clients, true);
       return msg;
    }
 
@@ -101,12 +101,12 @@ public final class Server extends Object {
          if (client.isClosed()) {
             this.clients.remove(client);
             final int numClients = this.clients.size();
-            utils.index.serverLog(client, numClients, false);
-            msg = utils.index.serverMessage(this.clients, false);
+            index.serverLog(client, numClients, false);
+            msg = index.serverMessage(this.clients, false);
          } else
             System.out.println("Client still connected...");
       } catch(final IOException e) {
-         return utils.index.handleException(e);
+         return index.handleException(e);
       } finally {
          return msg;
       }
@@ -114,25 +114,25 @@ public final class Server extends Object {
 
    public final synchronized void close() {
       try {
-         final String serverProcess = utils.index.serverProcess(this.serverSocket);
+         final String serverProcess = index.serverProcess(this.serverSocket);
          System.out.println("Server | " + serverProcess +" | shutting down...");
          this.serverSocket.close();
          final boolean isClosed = this.serverSocket.isClosed();
          if (isClosed) {
-            System.out.println("Server closed "+utils.index.getDate());
+            System.out.println("Server closed "+index.getDate());
             System.exit(1);
          }
          else
             System.out.println("Server still running...");
       } catch (IOException e) {
-         utils.index.handleException(e);
+         index.handleException(e);
       }
    }
 
 
    public final static void main(final String[] args) {
-      utils.index.PORT = args.length > 0 ? Integer.parseInt(args[0]) : utils.index.PORT;
-      final Server s = new Server(utils.index.PORT);
+      index.PORT = args.length > 0 ? Integer.parseInt(args[0]) : index.PORT;
+      final Server s = new Server(index.PORT);
       s.comunication();
    }
 }

@@ -9,6 +9,7 @@ import java.util.*;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see index
+ * @since 1.0
  */
 
 public class index extends Object {
@@ -132,7 +133,7 @@ public class index extends Object {
         final Socket clientSocket = clients.lastElement();
         final String clientProcess = clientProcess(clientSocket, false);
         final String now = getDate();
-        final String msg = String.format("Client  | %s | has %s the Chat%s  ; Actual Clients: %d", clientProcess, strState, now, numClients);
+        final String msg = String.format("Client  | %s | has %s the Chat ; Actual Clients: %d %s", clientProcess, strState, numClients, now);
         return msg;
     }
 

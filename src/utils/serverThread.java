@@ -64,7 +64,7 @@ public final class serverThread extends Thread {
             final Scanner serverInput = new Scanner(clientInputStream);
             String msg = "";
             do {
-                final String clientProcess = utils.index.clientProcess(this.clientSocket, false);
+                final String clientProcess = index.clientProcess(this.clientSocket, false);
                 msg = serverInput.nextLine();
                 msg = msg.equals(index.strLeave) ?
                         server.removeClient(this.clientSocket) : msg.equals(index.strJoin) ?

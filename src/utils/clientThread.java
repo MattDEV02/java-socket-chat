@@ -11,6 +11,7 @@ import main.*;
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see client
+ * @since 1.0
  */
 
 public final class clientThread extends Thread {
