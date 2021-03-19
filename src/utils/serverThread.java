@@ -21,13 +21,13 @@ public final class serverThread extends Thread {
         super();
         final String client_HOST = clientSocket.getInetAddress().getHostAddress();
         final int client_PORT= clientSocket.getPort();
-        final boolean cond = ((server != null) && (utils.index.isValidSocket(client_HOST,client_PORT)));
+        final boolean cond = ((server != null) && (index.isValidSocket(client_HOST,client_PORT)));
         if(cond) {
             this.server = server;
             this.clientSocket = clientSocket;
         } else {
             final String className = this.getClass().toString();
-            utils.index.handleConstruct_ERR(className);
+            index.handleConstruct_ERR(className);
         }
     }
 
@@ -37,14 +37,14 @@ public final class serverThread extends Thread {
             this.setClientSocket(s.clientSocket);
         } else {
             final String className = this.getClass().toString();
-            utils.index.handleCopy_Construct_ERR(className);
+            index.handleCopy_Construct_ERR(className);
         }
     }
 
     @Override
     public final String toString() {
         final String strServer = this.server.toString();
-        final String strClient = this.clientSocket.toString();
+        final String strClient = index.clientProcess(this.clientSocket, false);
         final String s = String.format("Server:  %s \nClient: %s", strServer, strClient);
         return s;
     }
@@ -73,7 +73,7 @@ public final class serverThread extends Thread {
             } while (serverInput.hasNextLine());
             serverInput.close();
         } catch (IOException e) {
-            utils.index.handleException(e);
+            index.handleException(e);
         }
     }
 }

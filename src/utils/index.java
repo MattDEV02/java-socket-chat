@@ -96,16 +96,16 @@ public class index extends Object {
     }
 
     public final static String randomString(final int length) {
-        final String charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        final String charset = "0123456789abcdefghijklmnopqrstuvwxyz";
         final int range = charset.length();
         final Random random = getRandom();
-        String result = "";
+        StringBuilder result = new StringBuilder("");
         int i = 0;
         for ( ; (i < length); i++) {
             final int randomInt = random.nextInt(range);
-            result += (charset.charAt(randomInt));
+            result.append(charset.charAt(randomInt));
         }
-        return result;
+        return result.toString();
     }
 
     public final static String serverProcess(final ServerSocket server) {
@@ -133,7 +133,14 @@ public class index extends Object {
         final Socket clientSocket = clients.lastElement();
         final String clientProcess = clientProcess(clientSocket, false);
         final String now = getDate();
-        final String msg = String.format("Client  | %s | has %s the Chat ; Actual Clients: %d %s", clientProcess, strState, numClients, now);
+        final String base = "Client | %s | has %s the Chat ; Actual Clients: %d %s";
+        final String msg = String.format(
+                base,
+                clientProcess,
+                strState,
+                numClients,
+                now
+        );
         return msg;
     }
 
@@ -161,6 +168,13 @@ public class index extends Object {
     public final static void handleCopy_Construct_ERR(final String class_name) {
         System.err.println("Operazione di Copia dell'Oggetto della Classe | " + class_name + " | Fallita.");
         System.exit(1);
+    }
+
+    public final String readUsername(final String msg) {
+        final int end = msg.indexOf(":");
+        final String username = msg.substring(0, end);
+        System.out.println(username);
+        return "";
     }
 
 }

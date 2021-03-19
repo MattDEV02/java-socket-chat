@@ -17,26 +17,22 @@ import main.*;
 public final class clientThread extends Thread {
 
     private Chat chat = null;
-    private Socket client = null;
+    private Scanner clientInput = null;
 
-    public clientThread(final Chat chat, final Socket client) {
-        final String client_HOST = client.getInetAddress().getHostAddress();
-        final int client_PORT= client.getPort();
-        final boolean cond = ((chat != null) && (utils.index.isValidSocket(client_HOST, client_PORT)));
-        if(cond) {
+    public clientThread(final Chat chat, final Scanner clientInput) {
+        if((chat != null) && (clientInput != null)) {
             this.chat = chat;
-            this.client = client;
-        }
-        else {
-            System.err.println("Check inserted HOST.");
-            utils.index.handlePORT_ERR();
+            this.clientInput = clientInput;
+        } else {
+            final String className = this.getClass().toString();
+            index.handleConstruct_ERR(className);
         }
     }
 
     public clientThread(final clientThread c) {
         if(c != null) {
-            //this.setChat(c.chat);
-            this.setClient(c.client);
+            this.setChat(c.chat);
+            this.setClientInput(c.clientInput);
         } else {
             final String className = this.getClass().toString();
             utils.index.handleCopy_Construct_ERR(className);
@@ -45,28 +41,26 @@ public final class clientThread extends Thread {
 
     @Override
     public final void run()  {
-        try {
-            final InputStream clientInputStream = this.client.getInputStream();
-            final Scanner clientInput = new Scanner(clientInputStream);
-            do {
-                final String msg = clientInput.nextLine();
-                this.chat.output_messages(msg);
-            } while (clientInput.hasNextLine());
-            clientInput.close();
-        } catch (final IOException e) {
-            utils.index.handleException(e);
-        }
+        do {
+            final String msg = this.clientInput.nextLine();
+            this.chat.output_messages(msg);
+        } while (clientInput.hasNextLine());
+        this.clientInput.close();
     }
 
     @Override
     public final String toString() {
-        final String clientStr = utils.index.clientProcess(this.client, true);
-        final String s = String.format("Client: %s \nUsername: %s", clientStr);
+        final String clientInputStr =  this.clientInput.toString();
+        final String s = String.format("Client: %s \nUsername: %s", clientInputStr);
         return s;
     }
 
-    public final Socket getClient() { return this.client; }
+    public final Chat getChat() { return this.chat; }
 
-    public final void setClient(final Socket client) { this.client = client; }
+    public final Scanner getClientInput() { return this.clientInput; }
+
+    public final void setChat(final Chat chat) { this.chat = chat; }
+
+    public final void setClientInput(final Scanner clientInput) { this.clientInput = clientInput; }
 
 }

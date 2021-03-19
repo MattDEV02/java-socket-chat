@@ -21,7 +21,7 @@ public final class Chat extends JFrame {
     private final JTextField input_message = new JTextField("");
     private final JTextArea area_messages = new JTextArea("\n");
     private final JScrollPane area_messagesScrollPane = new JScrollPane(this.area_messages);
-    private final JLabel title = new JLabel("Chat-Room");
+    private final JLabel title = new JLabel("Your username: ");
     private client client = null;
     // end attributes
 
@@ -43,7 +43,6 @@ public final class Chat extends JFrame {
         cp.setLayout(null);
         cp.setBackground(new Color(0xC0C0C0));
         // start components
-
         this.submit.setBounds(886, 485, 70, 36); // x, y, w, h
         this.submit.setMargin(new Insets(2, 2, 2, 2));
         this.submit.addActionListener(new ActionListener() {
@@ -62,7 +61,7 @@ public final class Chat extends JFrame {
         this.input_message.setFont(new Font("Dialog", Font.BOLD, 16));
         this.input_message.addActionListener(new ActionListener() {
             public final void actionPerformed(final ActionEvent evt) {
-                input_message_ActionPerformed(evt);
+                submit_ActionPerformed(evt);
             }
         });
         cp.add(this.input_message);
@@ -83,14 +82,17 @@ public final class Chat extends JFrame {
         cp.add(this.title);
         // end components
         this.client = client;
-        final Socket clientSocket = this.client.getClientSocket();
-        final String username = this.client.getUsername();
-        final String clientProcess = index.clientProcess(clientSocket, true);
-        this.title.setText(username + " > " + clientProcess);
-        new clientThread(this, clientSocket).start(); // start new Thread
+        this.handleClient();
     } // end of public Chat
 
     // start methods
+
+    public final void handleClient() {
+        final Socket clientSocket = this.client.getClientSocket();
+        final String username = this.client.getUsername();
+        this.title.setText(this.title.getText() + username + " ");
+        new clientThread(this, client.getClientInput()).start(); // start new Thread
+    }
 
     public final void output_messages(final String msg) {
         final String s = area_messages.getText();
@@ -104,6 +106,8 @@ public final class Chat extends JFrame {
         if(msg.length() > 0) {
             this.input_message.setText("");
             this.client.send(msg);
+        } else {
+            System.out.println("Inserire caratteri prima di inviare.");
         }
     }
 
@@ -112,14 +116,8 @@ public final class Chat extends JFrame {
         this.submit_message();
     } // end of submit_ActionPerformed
 
-    public final void input_message_ActionPerformed(final ActionEvent evt) {
-        System.out.println(evt);
-        this.submit_message();
-
-    } // end of input_message_ActionPerformed
-
     public final static void main(String[] args) {
-        final String username = args.length > 0 ? args[0] : utils.index.randomString(5);
+        final String username = args.length > 0 ? args[0] : index.randomString(5);
         final client client = new client(index.HOST, index.PORT, username);
         new Chat(client);
     } // end of main

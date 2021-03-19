@@ -17,14 +17,14 @@ import utils.*;
 
 public final class Server extends Object {
 
-   private Vector<Socket> clients = null;
+   private Vector<Socket> clientSockets = null;
    private ServerSocket serverSocket = null;
 
    public Server(final int port) {
       if(index.isValidSocketPORT(port)) {
          try {
             this.serverSocket = new ServerSocket(port);
-            this.clients = new Vector<Socket>();
+            this.clientSockets = new Vector<Socket>();
             final String serverProcess = index.serverProcess(this.serverSocket);
             System.out.println("Server running on:  | " + serverProcess + " |");
          } catch(final IOException e) {
@@ -36,7 +36,7 @@ public final class Server extends Object {
 
    public Server(Server s) {
       if (s != null) {
-         this.setClients(s.clients);
+         this.setClients(s.clientSockets);
          this.setServerSocket(s.serverSocket);
       } else {
          final String className = this.getClass().toString();
@@ -45,19 +45,21 @@ public final class Server extends Object {
    }
 
    public final String toString() {
-      StringBuilder client = new StringBuilder("");
-      for(Socket c : this.clients)
-         client.append(c.toString());
-      final String server = index.serverProcess(this.serverSocket);
-      final String s = String.format("Server: %s \nClients: %s", server, client.toString());
+      StringBuilder clientSocketStr = new StringBuilder("");
+      for(Socket clientSocket : this.clientSockets) {
+         final String clientProcess = index.clientProcess(clientSocket, false);
+         clientSocketStr.append(clientProcess);
+      }
+      final String serverSocketStr = index.serverProcess(this.serverSocket);
+      final String s = String.format("ServerSocket: %s \nClientSockets: %s", serverSocketStr, clientSocketStr.toString());
       return s;
    }
 
-   public final Vector<Socket> getClients() { return this.clients; }
+   public final Vector<Socket> getClients() { return this.clientSockets; }
 
    public final ServerSocket getServerSocket() { return this.serverSocket; }
 
-   public final void setClients(final Vector<Socket> clients) { this.clients = clients; }
+   public final void setClients(final Vector<Socket> clients) { this.clientSockets = clients; }
 
    public final void setServerSocket(final ServerSocket serverSocket) { this.serverSocket = serverSocket; }
 
@@ -80,29 +82,29 @@ public final class Server extends Object {
 
    public final void broadcastMessages(final String msg) {
       try {
-         for (final Socket client : this.clients)
-            this.send(client, msg);
+         for (final Socket clientSocket : this.clientSockets)
+            this.send(clientSocket, msg);
       } catch (IOException e) {
          index.handleException(e);
       }
    }
 
-   public final String addClient(final Socket client) {
-      this.clients.add(client);
-      index.serverLog(this.clients, true);
-      final String msg = index.serverMessage(this.clients, true);
+   public final String addClient(final Socket clientSocket) {
+      this.clientSockets.add(clientSocket);
+      index.serverLog(this.clientSockets, true);
+      final String msg = index.serverMessage(this.clientSockets, true);
       return msg;
    }
 
-   public final String removeClient(final Socket client) {
+   public final String removeClient(final Socket clientSocket) {
       String msg = "";
       try {
-         client.close();
-         if (client.isClosed()) {
-            this.clients.remove(client);
-            final int numClients = this.clients.size();
-            index.serverLog(client, numClients, false);
-            msg = index.serverMessage(this.clients, false);
+         clientSocket.close();
+         if (clientSocket.isClosed()) {
+            this.clientSockets.remove(clientSocket);
+            final int numClients = this.clientSockets.size();
+            index.serverLog(clientSocket, numClients, false);
+            msg = index.serverMessage(this.clientSockets, false);
          } else
             System.out.println("Client still connected...");
       } catch(final IOException e) {
@@ -121,8 +123,7 @@ public final class Server extends Object {
          if (isClosed) {
             System.out.println("Server closed "+index.getDate());
             System.exit(1);
-         }
-         else
+         } else
             System.out.println("Server still running...");
       } catch (IOException e) {
          index.handleException(e);
