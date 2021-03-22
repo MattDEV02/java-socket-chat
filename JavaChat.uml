@@ -1,14 +1,15 @@
 ﻿[Files]
 File0=C:\Users\elisa\IdeaProjects\java-chat\src\main\Chat.java
 File1=C:\Users\elisa\IdeaProjects\java-chat\src\main\Server.java
-File2=C:\Users\elisa\IdeaProjects\java-chat\src\utils\client.java
-File3=C:\Users\elisa\IdeaProjects\java-chat\src\utils\clientThread.java
-File4=C:\Users\elisa\IdeaProjects\java-chat\src\utils\index.java
-File5=C:\Users\elisa\IdeaProjects\java-chat\src\utils\serverThread.java
+File2=C:\Users\elisa\IdeaProjects\java-chat\src\utils\index.java
+File3=C:\Users\elisa\IdeaProjects\java-chat\src\utils\net\client.java
+File4=C:\Users\elisa\IdeaProjects\java-chat\src\utils\net\db.java
+File5=C:\Users\elisa\IdeaProjects\java-chat\src\utils\thread\clientThread.java
+File6=C:\Users\elisa\IdeaProjects\java-chat\src\utils\thread\serverThread.java
 
 [Box:  - main.Chat]
-X=393
-Y=95
+X=420
+Y=111
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -18,27 +19,7 @@ FontName=Segoe UI
 
 [Box:  - main.Server]
 X=193
-Y=97
-MinVis=4
-ShowParameter=4
-SortOrder=0
-ShowIcons=0
-FontSize=11
-FontName=Segoe UI
-
-[Box:  - utils.client]
-X=394
-Y=314
-MinVis=4
-ShowParameter=4
-SortOrder=0
-ShowIcons=0
-FontSize=11
-FontName=Segoe UI
-
-[Box:  - utils.clientThread]
-X=392
-Y=201
+Y=111
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -47,8 +28,8 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.index]
-X=665
-Y=157
+X=20
+Y=111
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -56,9 +37,39 @@ ShowIcons=0
 FontSize=11
 FontName=Segoe UI
 
-[Box:  - utils.serverThread]
-X=187
-Y=202
+[Box:  - utils.net.client]
+X=419
+Y=201
+MinVis=4
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=11
+FontName=Segoe UI
+
+[Box:  - utils.net.db]
+X=619
+Y=40
+MinVis=4
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=11
+FontName=Segoe UI
+
+[Box:  - utils.thread.clientThread]
+X=393
+Y=40
+MinVis=4
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=11
+FontName=Segoe UI
+
+[Box:  - utils.thread.serverThread]
+X=161
+Y=40
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -80,9 +91,9 @@ Fontsize=11
 ShowObjectDiagram=0
 
 [Connections]
-V0=utils.client#utils.clientThread#AssociationDirected####1#0#-1###0#0
-V1=utils.clientThread#main.Chat#AssociationDirected####0#0#0###0#0
-V2=utils.serverThread#main.Server#AssociationDirected####0#0#0###0#0
+V0=utils.thread.clientThread#main.Chat#AssociationDirected####0#0#0###0#0
+V1=utils.thread.serverThread#main.Server#AssociationDirected####0#0#0###0#0
+V2=utils.net.client#main.Chat#AssociationDirected####0#0#-1###0#0
 
 [Interactive]
 I0=

@@ -3,6 +3,8 @@ package main;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+import main.Server;
 import org.jetbrains.annotations.NotNull;
 import utils.index;
 import utils.thread.*;
@@ -19,8 +21,10 @@ import utils.thread.*;
 
 public final class Server extends Object {
 
+  // start attributes
    private ArrayList<Socket> clientSockets = null;
    private ServerSocket serverSocket = null;
+  // end attributes
 
    /**
     * <h2>Server Constructor</h2>
@@ -52,6 +56,7 @@ public final class Server extends Object {
          index.handleCopy_Construct_ERR(className);
       }
    }
+  // start methods
 
    public final String toString() {
       StringBuilder clientSocketStr = new StringBuilder("");
@@ -146,4 +151,5 @@ public final class Server extends Object {
       final Server s = new Server(index.PORT);
       s.comunication();
    }
+  // end methods
 }
