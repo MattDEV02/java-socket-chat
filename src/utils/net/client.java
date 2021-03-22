@@ -148,8 +148,7 @@ public final class client extends Object {
             if (condition) {
                 System.out.println("Client Closed" + index.getDate());
                 System.exit(1);
-            }
-            else
+            } else
                 System.out.println("Client still running...");
         } catch (final IOException e) {
             index.handleException(e);

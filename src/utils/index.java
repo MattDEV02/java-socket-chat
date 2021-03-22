@@ -22,6 +22,8 @@ public class index extends Object {
     public static final String strLeave = "leave";
     public static final int limitMin = 1023;
     public static final int limitMax = 65536;
+    public static final String table = "Message";
+    public static final String attr = "txt";
 
     public static InetAddress getLocalHost() {
         InetAddress HOST = null;
@@ -181,6 +183,10 @@ public class index extends Object {
     public final static void handleCopy_Construct_ERR(final String class_name) {
         System.err.println("Operazione di Copia dell'Oggetto della Classe | " + class_name + " | Fallita.");
         System.exit(1);
+    }
+
+    public final static void printQuery(final String query) { // in index
+        System.out.println(query + index.getDate());
     }
 
 }

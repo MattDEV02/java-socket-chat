@@ -122,7 +122,7 @@ public final class Chat extends JFrame {
         this.submit_message();
     } // end of submit_ActionPerformed
 
-    public final static void main(String[] args) {
+    public final static void main(final String[] args) {
         final String username = args.length > 0 ? args[0] : index.randomString(5);
         final client client = new client(index.HOST, index.PORT, username);
         new Chat(client);

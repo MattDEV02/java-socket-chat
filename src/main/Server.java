@@ -139,7 +139,7 @@ public final class Server extends Object {
             System.exit(1);
          } else
             System.out.println("Server still running...");
-      } catch (IOException e) {
+      } catch (final IOException e) {
          index.handleException(e);
       }
    }
