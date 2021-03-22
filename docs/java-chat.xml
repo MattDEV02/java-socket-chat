@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<JavaChat
+        name="java-chat"
+        author="Matteo Lambertucci"
+        version="1.0"
+        description="Simple Java Socket Chat"
+        keywords="Java, Javadoc, TCP, Socket, MultiThreading">
+   <main>
+       <Server port="int">
+           <utils>
+               <thread>
+                   <serverThread
+                           server="Server"
+                           clientSocket="Socket">
+                       the Thread structure of the Server class
+                   </serverThread>
+               </thread>
+               <index>
+                   the class with static utilities
+               </index>
+           </utils>
+       </Server>
+   </main>
+    <main>
+        <Chat client="client" username="String">
+            <utils>
+               <net>
+                   <client
+                           host="InetAddress"
+                           port="int">
+                       the Thread structure of the Chat class
+                   </client>
+               </net>
+               <thread>
+                   <clientThread
+                           clientInput="Scanner">
+                       the Thread structure of the Chat class
+                   </clientThread>
+               </thread>
+                <index>
+                    the class with static utilities
+                </index>
+            </utils>
+        </Chat>
+    </main>
+</JavaChat>

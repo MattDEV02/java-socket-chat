@@ -74,7 +74,7 @@ public final class serverThread extends Thread {
                 server.broadcastMessages(msg);
             } while (serverInput.hasNextLine());
             serverInput.close();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             index.handleException(e);
         }
     }

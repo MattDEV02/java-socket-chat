@@ -12,7 +12,6 @@ import utils.thread.*;
 
 /**
  * <h1>Socket Server Class </h1>
- * <h1>Socket Server Class </h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
  * @see serverThread
@@ -30,7 +29,7 @@ public final class Server extends Object {
     * <h2>Server Constructor</h2>
     * @param port the port that server will listen.
     * @return new instance of Server class.
-    * @throws IOException InputOuput Exception
+    * @throws IOException Input-Output Exception
     */
 
    public Server(final int port) {
@@ -98,7 +97,7 @@ public final class Server extends Object {
       try {
          for (final Socket clientSocket : this.clientSockets)
             this.send(clientSocket, msg);
-      } catch (IOException e) {
+      } catch (final IOException e) {
          index.handleException(e);
       }
    }

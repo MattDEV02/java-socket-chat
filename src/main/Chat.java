@@ -1,3 +1,6 @@
+/**
+ * <b>main is package with application classes.</b>
+ */
 package main;
 
 import java.awt.*;
@@ -9,7 +12,6 @@ import utils.thread.clientThread;
 
 
 /**
- * <h1> Simple Chat GUI</h1>
  * <h1> Simple Chat GUI</h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci

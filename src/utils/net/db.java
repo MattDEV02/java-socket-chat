@@ -2,6 +2,7 @@ package utils.net;
 
 import java.sql.*;
 import java.util.ArrayList;
+import utils.index;
 
 
 public class db {
@@ -9,8 +10,8 @@ public class db {
    private Statement statement = null;
    private ResultSet resultSet = null;
    private Connection conn = null;
-   private String table = "Message";
-   private String attr = "txt";
+   private final String table = "Message";
+   private final String attr = "txt";
 
    public db() throws SQLException {
       this.connect();
@@ -20,7 +21,7 @@ public class db {
    public void connect() {
       final String driver = "jdbc";
       final String type = "mysql";
-      final String host = "127.0.0.1"; // inetAddress
+      final String host = index.HOST.getHostAddress();
       final int port = 3306;
       final String user = "root";
       final String password = "";
@@ -31,11 +32,11 @@ public class db {
          Class.forName(driverClassName);
          this.conn = DriverManager.getConnection(uri,user,password);
       } catch(ClassNotFoundException | SQLException e) {
-         e.printStackTrace(System.err);
+         index.handleException(e);
       }
    }
 
-   public final String readSelectResult() {
+   public final ArrayList<String> readSelectResult() {
       final ArrayList<String> result = new ArrayList<String>();
       try {
          while(this.resultSet.next()) {
@@ -43,9 +44,9 @@ public class db {
             result.add(txt);
          }
       } catch(SQLException e) {
-         e.printStackTrace();
+         index.handleException(e);
       }
-      return result.toString();
+      return result;
    }
 
    public final void insert(final String txt) {
@@ -54,7 +55,7 @@ public class db {
          System.out.println(query);
          this.statement.executeUpdate(query);
       } catch(SQLException e) {
-         e.printStackTrace();
+         index.handleException(e);
       }
    }
 
@@ -62,11 +63,11 @@ public class db {
       final String query = String.format("SELECT %s FROM %s", this.attr, this.table);
       try {
          this.resultSet = this.statement.executeQuery(query);
-         final String result = this.readSelectResult();
+         final ArrayList<String> result = this.readSelectResult();
          System.out.println(query);
          System.out.println(result);
       } catch(SQLException e) {
-         e.printStackTrace();
+         index.handleException(e);
       }
    }
 
@@ -74,7 +75,7 @@ public class db {
       try {
          this.conn.close();
       } catch (SQLException e) {
-         e.printStackTrace();
+         index.handleException(e);
       }
    }
 
