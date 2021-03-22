@@ -1,7 +1,9 @@
-package utils;
+package utils.thread;
 
 import java.util.Scanner;
 import main.*;
+import utils.index;
+import utils.net.client;
 
 
 /**

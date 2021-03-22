@@ -1,9 +1,10 @@
-package utils;
+package utils.thread;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 import main.Server;
+import utils.index;
 
 
 /**

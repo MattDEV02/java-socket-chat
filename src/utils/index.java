@@ -144,9 +144,9 @@ public class index extends Object {
         return msg;
     }
 
-    public final static void serverLog(final Vector<Socket> clients, final boolean state) {
-        final int numClients = clients.size();
-        final Socket clientSocket = clients.lastElement();
+    public final static void serverLog(final ArrayList<Socket> clientSockets, final boolean state) {
+        final int numClients = clientSockets.size();
+        final Socket clientSocket = clientSockets.get(numClients - 1);
         final String clientProcess = clientProcess(clientSocket, false);
         final String strState = state ? "connected" : "disconnected";
         final String s = String.format("Client %s:  | %s |  ;  Actual Clients: %d", strState, clientProcess, numClients);

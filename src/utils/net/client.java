@@ -1,8 +1,11 @@
-package utils;
+package utils.net;
+
 
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import utils.thread.clientThread;
+import utils.index;
 
 /**
  * Description <h1>Socket Client Class </h1>

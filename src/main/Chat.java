@@ -3,14 +3,17 @@ package main;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import utils.*;
+import utils.index;
+import utils.net.client;
+import utils.thread.clientThread;
+
 
 /**
- * <b>Description</b>
+ * <h1> Simple Chat GUI</h1>
  * <h1> Simple Chat GUI</h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
- * @see client
+ * @see utils.net.client
  * @since 1.0
  */
 

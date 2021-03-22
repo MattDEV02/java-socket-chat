@@ -2,13 +2,14 @@ package main;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
+import java.util.ArrayList;
 import org.jetbrains.annotations.NotNull;
-import utils.*;
+import utils.index;
+import utils.thread.*;
 
 
 /**
- * <b>Description</b>
+ * <h1>Socket Server Class </h1>
  * <h1>Socket Server Class </h1>
  * @version 1.0 from 14/03/2021
  * @author Matteo Lambertucci
@@ -18,7 +19,7 @@ import utils.*;
 
 public final class Server extends Object {
 
-   private Vector<Socket> clientSockets = null;
+   private ArrayList<Socket> clientSockets = null;
    private ServerSocket serverSocket = null;
 
    /**
@@ -32,7 +33,7 @@ public final class Server extends Object {
       if(index.isValidSocketPORT(port)) {
          try {
             this.serverSocket = new ServerSocket(port);
-            this.clientSockets = new Vector<Socket>();
+            this.clientSockets = new ArrayList<Socket>();
             final String serverProcess = index.serverProcess(this.serverSocket);
             System.out.println("Server running on:  | " + serverProcess + " |");
          } catch(final IOException e) {
@@ -63,11 +64,11 @@ public final class Server extends Object {
       return s;
    }
 
-   public final Vector<Socket> getClientSockets() { return this.clientSockets; }
+   public final ArrayList<Socket> getClientSockets() { return this.clientSockets; }
 
    public final ServerSocket getServerSocket() { return this.serverSocket; }
 
-   public final void setClients(final Vector<Socket> clients) { this.clientSockets = clients; }
+   public final void setClients(final ArrayList<Socket> clients) { this.clientSockets = clients; }
 
    public final void setServerSocket(final ServerSocket serverSocket) { this.serverSocket = serverSocket; }
 
