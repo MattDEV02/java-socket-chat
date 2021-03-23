@@ -3,9 +3,18 @@ package utils.net;
 import java.sql.*;
 import java.util.ArrayList;
 import utils.index;
+import utils.thread.serverThread;
 
 
-public class db {
+/**
+ * <h1>MySQL DataBase Class </h1>
+ * @version 1.0 from 14/03/2021
+ * @author Matteo Lambertucci
+ * @see index
+ * @since 1.0
+ */
+
+public final class db extends Object {
 
    private Connection connection = null;
    private Statement statement = null;
@@ -135,13 +144,5 @@ public class db {
       } catch (final SQLException e) {
          index.handleException(e);
       }
-   }
-   
-   public final static void main(final String[] args) throws ClassNotFoundException, SQLException {
-      final db db = new db();
-      // db.insert("cosa si dice in zona?");
-      db.select();
-      System.out.println(db.getMessages().toString());
-      db.close();
    }
 }

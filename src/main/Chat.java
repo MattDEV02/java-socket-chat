@@ -5,9 +5,10 @@ package main;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import utils.index;
-import utils.net.client;
+import utils.net.*;
 import utils.thread.clientThread;
 
 
@@ -26,6 +27,7 @@ public final class Chat extends JFrame {
     private final JTextArea area_messages = new JTextArea("\n");
     private final JScrollPane area_messagesScrollPane = new JScrollPane(this.area_messages);
     private final JLabel title = new JLabel("Your username: ");
+    private db db = null;
     private client client = null;
     // end attributes
 
@@ -86,6 +88,7 @@ public final class Chat extends JFrame {
         ImageIcon icon = new ImageIcon("public/logo.png");
         this.setIconImage(icon.getImage());
        // end components
+        this.db = new db();
         this.client = client;
         this.handleClient();
     } // end of public Chat
@@ -95,7 +98,11 @@ public final class Chat extends JFrame {
     public final void handleClient() {
         final String username = this.client.getUsername();
         this.title.setText(this.title.getText() + username + " ");
-        final clientThread clientThread = new clientThread(this, client.getClientInput());
+        this.db.select();
+        final ArrayList<String> messages = this.db.getMessages();
+        for(final String message : messages)
+            this.output_messages(message);
+        final clientThread clientThread = new clientThread(this, client.getClientInput(), db);
         new Thread(clientThread).start(); // start new Thread
         this.input_message.requestFocus();
     }

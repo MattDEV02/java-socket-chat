@@ -3,8 +3,6 @@ package main;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.Scanner;
-import main.Server;
 import org.jetbrains.annotations.NotNull;
 import utils.index;
 import utils.thread.*;

@@ -3,8 +3,8 @@ package utils.thread;
 import java.util.Scanner;
 import main.*;
 import utils.index;
-import utils.net.client;
-
+import utils.net.*
+        ;
 
 /**
  * Description <h1>Thread structure of Client Class </h1>
@@ -18,11 +18,13 @@ public final class clientThread extends Object implements Runnable {
 
     private Chat chat = null;
     private Scanner clientInput = null;
+    private db db = null;
 
-    public clientThread(final Chat chat, final Scanner clientInput) {
+    public clientThread(final Chat chat, final Scanner clientInput, final db db) {
         if((chat != null) && (clientInput != null)) {
             this.chat = chat;
             this.clientInput = clientInput;
+            this.db = db;
         } else {
             final String className = this.getClass().toString();
             index.handleConstruct_ERR(className);
@@ -45,6 +47,7 @@ public final class clientThread extends Object implements Runnable {
             final String msg = this.clientInput.nextLine();
             this.chat.output_messages(msg);
             index.playSound();
+            db.insert(msg);
         } while (clientInput.hasNextLine());
         this.clientInput.close();
     }

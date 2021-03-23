@@ -8,8 +8,8 @@ File5=C:\Users\elisa\IdeaProjects\java-chat\src\utils\thread\clientThread.java
 File6=C:\Users\elisa\IdeaProjects\java-chat\src\utils\thread\serverThread.java
 
 [Box:  - main.Chat]
-X=419
-Y=128
+X=1170
+Y=40
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -18,8 +18,8 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - main.Server]
-X=186
-Y=125
+X=425
+Y=40
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -28,7 +28,7 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.index]
-X=619
+X=252
 Y=40
 MinVis=4
 ShowParameter=4
@@ -38,8 +38,8 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.net.client]
-X=422
-Y=238
+X=997
+Y=40
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -48,8 +48,8 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.net.db]
-X=622
-Y=127
+X=824
+Y=40
 MinVis=4
 ShowParameter=4
 SortOrder=0
@@ -58,7 +58,7 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.thread.clientThread]
-X=393
+X=598
 Y=40
 MinVis=4
 ShowParameter=4
@@ -68,7 +68,7 @@ FontSize=11
 FontName=Segoe UI
 
 [Box:  - utils.thread.serverThread]
-X=161
+X=20
 Y=40
 MinVis=4
 ShowParameter=4
@@ -89,11 +89,6 @@ ShowConnections=0
 Fontname=Segoe UI
 Fontsize=11
 ShowObjectDiagram=0
-
-[Connections]
-V0=utils.thread.clientThread#main.Chat#AssociationDirected####0#0#0###0#0
-V1=utils.thread.serverThread#main.Server#AssociationDirected####0#0#0###0#0
-V2=utils.net.client#main.Chat#AssociationDirected####0#0#-1###0#0
 
 [Interactive]
 I0=
